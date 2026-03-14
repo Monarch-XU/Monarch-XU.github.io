@@ -2,144 +2,219 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- 适配手机端 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人简历 | 姓名</title>
+    <title>我的个人作品集</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 FontAwesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 全局样式重置，避免不同浏览器显示差异 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
+        /* 简单的自定义样式补充 */
+        html { scroll-behavior: smooth; }
+        .gradient-text {
+            background: linear-gradient(to right, #0284c7, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        /* 页面背景和整体布局 */
-        body {
-            background-color: #f5f5f5;
-            padding: 20px;
-            max-width: 900px;
-            margin: 0 auto; /* 页面居中 */
+        /* 卡片翻转动画 */
+        .card-container { perspective: 1000px; }
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
-
-        /* 简历卡片样式 */
-        .resume-card {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .card-container:hover .card-inner { transform: rotateY(180deg); }
+        .card-front, .card-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
-
-        /* 头部：个人信息 */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .header p {
-            color: #666;
-            font-size: 16px;
-            margin: 5px 0;
-        }
-
-        /* 各模块通用样式 */
-        .section {
-            margin-bottom: 30px;
-        }
-        .section h2 {
-            font-size: 20px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-        }
-        .section-content {
-            padding-left: 15px;
-        }
-
-        /* 技能、项目、联系方式样式 */
-        .skill-item, .project-item, .contact-item {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        .skill-item span {
-            background: #e3f2fd;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-right: 8px;
-            color: #2196f3;
-        }
-        .project-item h3 {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .contact-item a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
+        .card-back { transform: rotateY(180deg); }
     </style>
 </head>
-<body>
-    <div class="resume-card">
-        <!-- 头部：个人基本信息 -->
-        <div class="header">
-            <h1>张三</h1>
-            <p>前端开发爱好者 | 在校学生</p>
-            <p>邮箱：zhangsan@example.com | 电话：138XXXX1234</p>
-        </div>
+<body class="bg-slate-50 text-slate-800">
 
-        <!-- 个人简介 -->
-        <div class="section">
-            <h2>个人简介</h2>
-            <div class="section-content">
-                <p>在校计算机专业学生，热爱前端开发，熟悉HTML/CSS基础，正在学习JavaScript和React。希望通过个人项目积累实战经验，目标是成为一名优秀的前端工程师。</p>
+    <!-- 1. 导航栏 -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-sky-600">My Name</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-sky-500 transition">About</a>
+                <a href="#projects" class="hover:text-sky-500 transition">Projects</a>
+                <a href="#contact" class="hover:text-sky-500 transition">Contact</a>
             </div>
         </div>
+    </nav>
 
-        <!-- 技能清单 -->
-        <div class="section">
-            <h2>掌握技能</h2>
-            <div class="section-content">
-                <div class="skill-item">基础：<span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                <div class="skill-item">工具：<span>Git</span><span>GitHub</span><span>VS Code</span></div>
-                <div class="skill-item">学习中：<span>React</span><span>Tailwind CSS</span></div>
+    <!-- 2. Hero 区域 -->
+    <section class="relative min-h-screen flex items-center justify-center bg-slate-900 text-white overflow-hidden">
+        <!-- 背景装饰光晕 -->
+        <div class="absolute w-[400px] h-[400px] bg-sky-600/20 rounded-full blur-[100px] animate-pulse"></div>
+        
+        <div class="relative z-10 text-center px-4">
+            <h2 class="text-xl text-sky-400 font-bold mb-2">Hello, I'm</h2>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tight">
+                <!-- 模仿他的名字下划线效果 -->
+                <span class="relative inline-block">
+                    Your Name
+                    <span class="absolute -bottom-2 left-0 w-full h-4 bg-sky-600/50 -skew-x-12 -z-10"></span>
+                </span>
+            </h1>
+            <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+                Your Title | What you do | Your interests
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="bg-sky-500 hover:bg-sky-400 px-8 py-4 rounded-full font-bold shadow-lg transition hover:-translate-y-1">
+                    <i class="fas fa-download mr-2"></i> Download CV
+                </a>
+                <a href="#projects" class="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-full font-bold backdrop-blur transition hover:-translate-y-1">
+                    View Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
+    </section>
 
-        <!-- 项目经历（学生可填课程项目/练手项目） -->
-        <div class="section">
-            <h2>项目经历</h2>
-            <div class="section-content">
-                <div class="project-item">
-                    <h3>个人简历网站</h3>
-                    <p>使用HTML/CSS制作的静态简历网站，部署在GitHub Pages，掌握了静态站点托管、域名绑定基础。</p>
+    <!-- 3. About 区域 -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">
+                <span class="gradient-text border-b-4 border-sky-500 pb-2">About Me</span>
+            </h2>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- 图片 -->
+                <div class="md:w-1/3">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-sky-400 to-sky-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition"></div>
+                        <!-- 替换为你的图片 -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" 
+                             alt="Profile" class="relative rounded-2xl shadow-2xl border-4 border-white w-full object-cover">
+                    </div>
                 </div>
-                <div class="project-item">
-                    <h3>课程设计：简易计算器</h3>
-                    <p>使用HTML/CSS/JS实现的简易计算器，掌握了JS事件处理、DOM操作基础。</p>
+                <!-- 文字 -->
+                <div class="md:w-2/3 text-lg text-slate-600 space-y-4">
+                    <p>Write your introduction here. Talk about your passion, your background, and what drives you.</p>
+                    <p>Maybe mention your university, your major, or a key experience that shaped your career goals.</p>
+                    <p>Highlight your soft skills, like leadership (e.g., Led a team in XXX competition) or your ability to learn quickly.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- 联系方式 -->
-        <div class="section">
-            <h2>联系方式</h2>
-            <div class="section-content">
-                <div class="contact-item">GitHub：<a href="https://github.com/你的用户名" target="_blank">https://github.com/你的用户名</a></div>
-                <div class="contact-item">邮箱：zhangsan@example.com</div>
-                <div class="contact-item">微信：zhangsan123456</div>
+    <!-- 4. Projects 区域 (3D翻转卡片) -->
+    <section id="projects" class="py-24 bg-slate-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">
+                <span class="border-b-4 border-sky-500 pb-2">Project Experience</span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 卡片 1 -->
+                <div class="card-container h-[500px]">
+                    <div class="card-inner relative w-full h-full">
+                        <!-- 正面 -->
+                        <div class="card-front absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border border-slate-100">
+                            <div class="h-48 bg-slate-100 flex items-center justify-center p-6">
+                                <!-- 项目图片 -->
+                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=80" class="object-contain h-full" alt="Project">
+                            </div>
+                            <div class="p-8 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-2">Project Name 1</h3>
+                                <span class="text-xs text-sky-600 bg-sky-50 px-2 py-1 rounded-full w-fit mb-4">Date</span>
+                                <p class="text-slate-600 line-clamp-4">Short description of the project goes here. What problem did you solve?</p>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">Tech 1</span>
+                                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">Tech 2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 背面 (Hover 显示) -->
+                        <div class="card-back absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border-2 border-sky-400/20 p-8">
+                            <h3 class="text-xl font-bold mb-6 text-sky-800 border-l-4 border-sky-500 pl-4">Details</h3>
+                            <ul class="space-y-4 text-slate-700">
+                                <li class="flex gap-3"><i class="fas fa-caret-right text-sky-400 mt-1"></i>Responsibility 1</li>
+                                <li class="flex gap-3"><i class="fas fa-caret-right text-sky-400 mt-1"></i>Responsibility 2</li>
+                                <li class="flex gap-3"><i class="fas fa-caret-right text-sky-400 mt-1"></i>What you learned</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 2 (复制上面的修改内容) -->
+                <div class="card-container h-[500px]">
+                    <div class="card-inner relative w-full h-full">
+                        <div class="card-front absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border border-slate-100">
+                            <div class="h-48 bg-slate-100 flex items-center justify-center p-6">
+                                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80" class="object-contain h-full" alt="Project">
+                            </div>
+                            <div class="p-8 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-2">Project Name 2</h3>
+                                <span class="text-xs text-sky-600 bg-sky-50 px-2 py-1 rounded-full w-fit mb-4">Date</span>
+                                <p class="text-slate-600 line-clamp-4">Another cool project description.</p>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">Python</span>
+                                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">ROS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border-2 border-sky-400/20 p-8">
+                            <h3 class="text-xl font-bold mb-6 text-sky-800 border-l-4 border-sky-500 pl-4">Details</h3>
+                            <p class="text-slate-600">More details here...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="card-container h-[500px]">
+                    <div class="card-inner relative w-full h-full">
+                        <div class="card-front absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border border-slate-100">
+                            <div class="h-48 bg-slate-100 flex items-center justify-center p-6">
+                                <div class="w-full h-full bg-slate-200 rounded flex items-center justify-center text-slate-400">
+                                    <i class="fas fa-robot text-6xl"></i>
+                                </div>
+                            </div>
+                            <div class="p-8 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-2">Project Name 3</h3>
+                                <span class="text-xs text-sky-600 bg-sky-50 px-2 py-1 rounded-full w-fit mb-4">Date</span>
+                                <p class="text-slate-600 line-clamp-4">Project description.</p>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span class="text-xs bg-slate-100 px-2 py-1 rounded">STM32</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-back absolute inset-0 bg-white rounded-[2rem] shadow-xl overflow-hidden flex flex-col border-2 border-sky-400/20 p-8">
+                             <h3 class="text-xl font-bold mb-6 text-sky-800 border-l-4 border-sky-500 pl-4">Details</h3>
+                            <p class="text-slate-600">Details...</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- 5. Contact 区域 -->
+    <section id="contact" class="py-24 bg-slate-800 text-white text-center">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-8">Get In Touch</h2>
+            <p class="text-slate-300 mb-12">Feel free to reach out for collaborations or just a friendly chat!</p>
+            
+            <div class="flex justify-center gap-8">
+                <!-- 替换链接 -->
+                <a href="#" class="w-16 h-16 bg-white/10 hover:bg-sky-500 rounded-2xl flex items-center justify-center text-2xl transition hover:scale-110 shadow-xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white/10 hover:bg-sky-500 rounded-2xl flex items-center justify-center text-2xl transition hover:scale-110 shadow-xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:your@email.com" class="w-16 h-16 bg-white/10 hover:bg-sky-500 rounded-2xl flex items-center justify-center text-2xl transition hover:scale-110 shadow-xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
+        <p>© 2024 Your Name. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
