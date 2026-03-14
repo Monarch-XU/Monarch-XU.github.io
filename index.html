@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 适配手机端 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人简历 | 姓名</title>
+    <style>
+        /* 全局样式重置，避免不同浏览器显示差异 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 页面背景和整体布局 */
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto; /* 页面居中 */
+        }
+
+        /* 简历卡片样式 */
+        .resume-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 头部：个人信息 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #666;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        /* 各模块通用样式 */
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        .section-content {
+            padding-left: 15px;
+        }
+
+        /* 技能、项目、联系方式样式 */
+        .skill-item, .project-item, .contact-item {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .skill-item span {
+            background: #e3f2fd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+            color: #2196f3;
+        }
+        .project-item h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-card">
+        <!-- 头部：个人基本信息 -->
+        <div class="header">
+            <h1>张三</h1>
+            <p>前端开发爱好者 | 在校学生</p>
+            <p>邮箱：zhangsan@example.com | 电话：138XXXX1234</p>
+        </div>
+
+        <!-- 个人简介 -->
+        <div class="section">
+            <h2>个人简介</h2>
+            <div class="section-content">
+                <p>在校计算机专业学生，热爱前端开发，熟悉HTML/CSS基础，正在学习JavaScript和React。希望通过个人项目积累实战经验，目标是成为一名优秀的前端工程师。</p>
+            </div>
+        </div>
+
+        <!-- 技能清单 -->
+        <div class="section">
+            <h2>掌握技能</h2>
+            <div class="section-content">
+                <div class="skill-item">基础：<span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                <div class="skill-item">工具：<span>Git</span><span>GitHub</span><span>VS Code</span></div>
+                <div class="skill-item">学习中：<span>React</span><span>Tailwind CSS</span></div>
+            </div>
+        </div>
+
+        <!-- 项目经历（学生可填课程项目/练手项目） -->
+        <div class="section">
+            <h2>项目经历</h2>
+            <div class="section-content">
+                <div class="project-item">
+                    <h3>个人简历网站</h3>
+                    <p>使用HTML/CSS制作的静态简历网站，部署在GitHub Pages，掌握了静态站点托管、域名绑定基础。</p>
+                </div>
+                <div class="project-item">
+                    <h3>课程设计：简易计算器</h3>
+                    <p>使用HTML/CSS/JS实现的简易计算器，掌握了JS事件处理、DOM操作基础。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="section">
+            <h2>联系方式</h2>
+            <div class="section-content">
+                <div class="contact-item">GitHub：<a href="https://github.com/你的用户名" target="_blank">https://github.com/你的用户名</a></div>
+                <div class="contact-item">邮箱：zhangsan@example.com</div>
+                <div class="contact-item">微信：zhangsan123456</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
